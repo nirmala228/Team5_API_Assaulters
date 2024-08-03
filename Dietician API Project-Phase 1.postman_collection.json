@@ -3,8 +3,8 @@
 		"_postman_id": "f50b7e19-37dd-45b3-aaa3-563a3f9e7c54",
 		"name": "Dietician API Project-Phase 1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37263204",
-		"_collection_link": "https://postmanhackthon.postman.co/workspace/Team_5-_API_Assaulters~9e8a6e28-77fd-4891-bb90-4d10839a2e19/collection/37263204-f50b7e19-37dd-45b3-aaa3-563a3f9e7c54?action=share&source=collection_link&creator=37263204"
+		"_exporter_id": "37339439",
+		"_collection_link": "https://postmanhackthon.postman.co/workspace/9e8a6e28-77fd-4891-bb90-4d10839a2e19/collection/37263204-f50b7e19-37dd-45b3-aaa3-563a3f9e7c54?action=share&source=collection_link&creator=37339439"
 	},
 	"item": [
 		{
@@ -1080,7 +1080,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{D4_token}}",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTE2MTEsImV4cCI6MTcyMjY4MDQxMX0._6zapPWoCo0eT0YqDUcWywOiO8m1yaa0N3T7wesoHyHAxA4wLHdkOfahwp8cVdjuul4HDG_4cU23AL1ikQZc8A",
 											"type": "string"
 										}
 									]
@@ -1350,38 +1350,60 @@
 						{
 							"name": "Patient Invalid Login",
 							"request": {
-								"method": "POST",
-								"header": []
-							},
-							"response": []
-						},
-						{
-							"name": "Patient Logout",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI0NTI3MjAsImV4cCI6MTcyMjQ4MTUyMH0.UjGoOpe9iAmcssj-bPw4IGf6EKRKQmmqpR2REJLf3ovNOMBqmmXtfuAYyXBA9IaGfLTIr4rKv8cCJ8j9N_ORwQ",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NDg5NDcsImV4cCI6MTcyMjY3Nzc0N30.zq8z6-BeWg1LNCdIkKpK2kvqdWRWBL-x8WuteH3txoHjGh8BUhsxS35KMH2UNosLrxp2aqJVdUDsc1x1KqOL9g",
 											"type": "string"
 										}
 									]
 								},
-								"method": "GET",
+								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "",
+									"raw": "{\n  \"password\": \"test\",\n  \"userLoginEmail\": \"nones@gmail.com\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
 										}
 									}
 								},
+								"url": {
+									"raw": "{{BaseURL}}/login",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Patient Logout",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NDg5NDcsImV4cCI6MTcyMjY3Nzc0N30.zq8z6-BeWg1LNCdIkKpK2kvqdWRWBL-x8WuteH3txoHjGh8BUhsxS35KMH2UNosLrxp2aqJVdUDsc1x1KqOL9g",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
 								"url": {
 									"raw": "{{BaseURL}}/logoutdietician",
 									"host": [
@@ -1397,8 +1419,36 @@
 						{
 							"name": "Patient Login",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NDg5NDcsImV4cCI6MTcyMjY3Nzc0N30.zq8z6-BeWg1LNCdIkKpK2kvqdWRWBL-x8WuteH3txoHjGh8BUhsxS35KMH2UNosLrxp2aqJVdUDsc1x1KqOL9g",
+											"type": "string"
+										}
+									]
+								},
 								"method": "POST",
-								"header": []
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"password\": \"test\",\n  \"userLoginEmail\": \"joneser@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/login",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"login"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1442,7 +1492,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{D4_token}}",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTE2MTEsImV4cCI6MTcyMjY4MDQxMX0._6zapPWoCo0eT0YqDUcWywOiO8m1yaa0N3T7wesoHyHAxA4wLHdkOfahwp8cVdjuul4HDG_4cU23AL1ikQZc8A",
 											"type": "string"
 										}
 									]
@@ -1493,7 +1543,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{Admin_token}}",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTI0ODYsImV4cCI6MTcyMjY4MTI4Nn0.YkYBYWELVA1mGZMfgt7TKgWs9IYzrtFKO4w--3Pj7wFoywg_pA2R2fiq7DoV7y9IAMa4xy_scdztT839qtGFAA",
 											"type": "string"
 										}
 									]
@@ -1532,7 +1582,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{Admin_token}}",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTI0ODYsImV4cCI6MTcyMjY4MTI4Nn0.YkYBYWELVA1mGZMfgt7TKgWs9IYzrtFKO4w--3Pj7wFoywg_pA2R2fiq7DoV7y9IAMa4xy_scdztT839qtGFAA",
 											"type": "string"
 										}
 									]
@@ -1549,12 +1599,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseURL}}/morbidity",
+									"raw": "{{BaseURL}}/morbidity/Fasting Glucose",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
-										"morbidity"
+										"morbidity",
+										"Fasting Glucose"
 									]
 								}
 							},
@@ -1563,8 +1614,29 @@
 						{
 							"name": "Get Test Reports",
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjY4NDUyMCwiZXhwIjoxNzIyNzEzMzIwfQ.GrUXA0DShQNXO-m0DAOr_Kgn6N7Q4uGfL-hxQC4OF_D3_rRWsncjf69Viy3nn6TdkRyAwgEOQq4jI-KR_7RewA",
+											"type": "string"
+										}
+									]
+								},
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/patient/testReports/346",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"patient",
+										"testReports",
+										"346"
+									]
+								}
 							},
 							"response": []
 						},
@@ -1576,7 +1648,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{P1_token_229}}",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjY4NDUyMCwiZXhwIjoxNzIyNzEzMzIwfQ.GrUXA0DShQNXO-m0DAOr_Kgn6N7Q4uGfL-hxQC4OF_D3_rRWsncjf69Viy3nn6TdkRyAwgEOQq4jI-KR_7RewA",
 											"type": "string"
 										}
 									]
@@ -1584,13 +1656,15 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/229",
+									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ad8c1a4717cf471aaad1c9",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"patient",
-										"229"
+										"testReports",
+										"viewFile",
+										"66ad8c1a4717cf471aaad1c9"
 									]
 								}
 							},
