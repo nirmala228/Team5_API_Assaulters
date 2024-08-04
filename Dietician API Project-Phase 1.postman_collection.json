@@ -14,7 +14,29 @@
 					"name": "Admin Login Logout",
 					"item": [
 						{
-							"name": "Admin Invalid Login",
+							"name": "Admin Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content-Type is present\", function () {\r",
+											"    pm.response.to.have.header(\"Content-Type\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Content_Type is application/json\",function (){\r",
+											"    pm.response.to.have.header (\"Content-Type\", \"application/json\");\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -43,7 +65,7 @@
 							"response": []
 						},
 						{
-							"name": "Admin Login",
+							"name": "Admin Invalid Login",
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -52,7 +74,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"password\":\"test\",\n  \"userLoginEmail\":\"Team5@gmail.com\"\n}\n",
+									"raw": "{\n  \"password\":\"test\",\n  \"userLoginEmail\":\"Team5@gmail.com\"\n}\n\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1080,7 +1102,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTE2MTEsImV4cCI6MTcyMjY4MDQxMX0._6zapPWoCo0eT0YqDUcWywOiO8m1yaa0N3T7wesoHyHAxA4wLHdkOfahwp8cVdjuul4HDG_4cU23AL1ikQZc8A",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI3NDA5ODEsImV4cCI6MTcyMjc2OTc4MX0.f9Lp81r5Su0qrovZOtKbczxJZOkxY3e_pC1ItspR9lsHsHpwxvQH1RUbTCCOfAHvl4J0eKNBLktd24-OuC1wNg",
 											"type": "string"
 										}
 									]
@@ -1349,6 +1371,24 @@
 					"item": [
 						{
 							"name": "Patient Invalid Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 401\", function () {",
+											"  pm.response.to.have.status(401);",
+											"});",
+											"",
+											"pm.test(\"Bad credentials\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Bad credentials\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1385,13 +1425,32 @@
 						},
 						{
 							"name": "Patient Logout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// Validate the logout message",
+											"pm.test(\"Logout successful message is present\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Logout successful\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NDg5NDcsImV4cCI6MTcyMjY3Nzc0N30.zq8z6-BeWg1LNCdIkKpK2kvqdWRWBL-x8WuteH3txoHjGh8BUhsxS35KMH2UNosLrxp2aqJVdUDsc1x1KqOL9g",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1418,6 +1477,44 @@
 						},
 						{
 							"name": "Patient Login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is present\", () => {",
+											"  pm.response.to.have.header(\"Content-Type\");",
+											"});",
+											"",
+											"pm.test(\"Content-Type header is application/json\", () => {",
+											"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 300ms\", () => {",
+											"  pm.expect(pm.response.responseTime).to.be.below(230);",
+											"});",
+											"",
+											"pm.test(\"Response contains token\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData).to.have.property(\"token\");",
+											"    pm.expect(jsonData.token).to.not.be.empty;",
+											"});",
+											"",
+											"",
+											"pm.test(\"User role is Patient\", function () {",
+											"    var jsonData = pm.response.json();",
+											"    pm.expect(jsonData.roles).to.include(\"ROLE_PATIENT\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1455,7 +1552,7 @@
 					]
 				},
 				{
-					"name": "Patient Records",
+					"name": "Patient Records with patient login",
 					"item": [
 						{
 							"name": "Retrieve All Patient Info",
@@ -1465,7 +1562,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{D4_token}}",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1492,7 +1589,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTE2MTEsImV4cCI6MTcyMjY4MDQxMX0._6zapPWoCo0eT0YqDUcWywOiO8m1yaa0N3T7wesoHyHAxA4wLHdkOfahwp8cVdjuul4HDG_4cU23AL1ikQZc8A",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1500,7 +1597,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ac37aa3e6c022b073da33f",
+									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ad8c1a4717cf471aaad1c9",
 									"host": [
 										"{{BaseURL}}"
 									],
@@ -1508,7 +1605,7 @@
 										"patient",
 										"testReports",
 										"viewFile",
-										"66ac37aa3e6c022b073da33f"
+										"66ad8c1a4717cf471aaad1c9"
 									]
 								}
 							},
@@ -1543,7 +1640,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTI0ODYsImV4cCI6MTcyMjY4MTI4Nn0.YkYBYWELVA1mGZMfgt7TKgWs9IYzrtFKO4w--3Pj7wFoywg_pA2R2fiq7DoV7y9IAMa4xy_scdztT839qtGFAA",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1582,7 +1679,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NTI0ODYsImV4cCI6MTcyMjY4MTI4Nn0.YkYBYWELVA1mGZMfgt7TKgWs9IYzrtFKO4w--3Pj7wFoywg_pA2R2fiq7DoV7y9IAMa4xy_scdztT839qtGFAA",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1612,14 +1709,14 @@
 							"response": []
 						},
 						{
-							"name": "Get Test Reports",
+							"name": "Retrive Test Reports with invalid id",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjY4NDUyMCwiZXhwIjoxNzIyNzEzMzIwfQ.GrUXA0DShQNXO-m0DAOr_Kgn6N7Q4uGfL-hxQC4OF_D3_rRWsncjf69Viy3nn6TdkRyAwgEOQq4jI-KR_7RewA",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1641,14 +1738,14 @@
 							"response": []
 						},
 						{
-							"name": "Get Patient File",
+							"name": "Retrive Test Reports with valid patient id",
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjY4NDUyMCwiZXhwIjoxNzIyNzEzMzIwfQ.GrUXA0DShQNXO-m0DAOr_Kgn6N7Q4uGfL-hxQC4OF_D3_rRWsncjf69Viy3nn6TdkRyAwgEOQq4jI-KR_7RewA",
+											"value": "{{patient_login}}",
 											"type": "string"
 										}
 									]
@@ -1656,15 +1753,14 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ad8c1a4717cf471aaad1c9",
+									"raw": "{{BaseURL}}/patient/testReports/631",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"patient",
 										"testReports",
-										"viewFile",
-										"66ad8c1a4717cf471aaad1c9"
+										"631"
 									]
 								}
 							},
@@ -1745,6 +1841,11 @@
 		{
 			"key": "P1_token_229",
 			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19QNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI1Njk3NDMsImV4cCI6MTcyMjU5ODU0M30.OymTmLd4m83-XLARi3DR4-IOoDPxZU6Q5yONnd198EdJsZwywuGNkYSXjh1DVMgNrXet-iTzCDwV90nYF5HBfw",
+			"type": "string"
+		},
+		{
+			"key": "patient_login",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjgwMDQ4MywiZXhwIjoxNzIyODI5MjgzfQ.l8WluyaLGrA95yFbI8zirlTVc-cLaE01aBE799ju0SR4WGXXstY0qLsjEbQP6BU97raqFJHDzuZeEyPonkSXAA",
 			"type": "string"
 		}
 	]
