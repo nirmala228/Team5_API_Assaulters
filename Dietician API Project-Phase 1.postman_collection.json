@@ -1,9 +1,17 @@
 {
 	"info": {
+<<<<<<< HEAD
 		"_postman_id": "fb441542-216a-4235-994b-95b315e45a76",
 		"name": "Dietician API Project-Phase 1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "37218245"
+=======
+		"_postman_id": "f50b7e19-37dd-45b3-aaa3-563a3f9e7c54",
+		"name": "Dietician API Project-Phase 1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37263204",
+		"_collection_link": "https://postmanhackthon.postman.co/workspace/Team_5-_API_Assaulters~9e8a6e28-77fd-4891-bb90-4d10839a2e19/collection/37263204-f50b7e19-37dd-45b3-aaa3-563a3f9e7c54?action=share&source=collection_link&creator=37263204"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 	},
 	"item": [
 		{
@@ -116,6 +124,7 @@
 					"item": [
 						{
 							"name": "Create Dietician with Invaild Data",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -158,12 +167,15 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzE4NDEsImV4cCI6MTcyMjg2MDY0MX0.okqRr_UXZleK6jGCynhlU76n5DIAIpveNrZbyxq8BkcIeaEwG0jqHcOT53W9_IRHO9PLt8wJREakp-Sotvki9g",
 											"type": "string"
 										}
@@ -417,6 +429,9 @@
 										{
 											"key": "token",
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzEyNDUsImV4cCI6MTcyMjg2MDA0NX0.eHzDs0fv6qYtUzoIKqhzxKzGnPxLfRczDjaSbcdBQzhKRPl0_GRaQSaIt7wJrxCnUmBLKLJRXNhgwftzpWrr",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -445,6 +460,7 @@
 							"response": []
 						},
 						{
+<<<<<<< HEAD
 							"name": "Update Dietician by Valid Id",
 							"event": [
 								{
@@ -519,13 +535,92 @@
 									}
 								}
 							],
+=======
+							"name": "Create Dietician",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzE4NDEsImV4cCI6MTcyMjg2MDY0MX0.okqRr_UXZleK6jGCynhlU76n5DIAIpveNrZbyxq8BkcIeaEwG0jqHcOT53W9_IRHO9PLt8wJREakp-Sotvki9g",
+=======
+											"value": "{{Bearer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ContactNumber\": \"6234567890\",\n  \"DateOfBirth\": \"1989-02-24T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"UK_D3@gmail.com\",\n  \"Firstname\": \"CCC\",\n  \"HospitalCity\": \"Delhi\",\n  \"HospitalName\": \"Fortis\",\n  \"HospitalPincode\": \"923456\",\n  \"HospitalStreet\": \"Vasant St\",\n  \"Lastname\": \"YYY\"\n \n}\n\n\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/dietician",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"dietician"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Dietician with Duplicate Value",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Bearer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ContactNumber\": \"6234567890\",\n  \"DateOfBirth\": \"1989-02-24T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"UK_D3@gmail.com\",\n  \"Firstname\": \"CCC\",\n  \"HospitalCity\": \"Delhi\",\n  \"HospitalName\": \"Fortis\",\n  \"HospitalPincode\": \"923456\",\n  \"HospitalStreet\": \"Vasant St\",\n  \"Lastname\": \"YYY\"\n \n}\n\n\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/dietician",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"dietician"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upadate Dietician",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -534,7 +629,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "\n\n\n{\n        \"ContactNumber\": \"8234567899\",\n        \"DateOfBirth\": \"1984-12-24T18:14:08.570Z\",\n        \"Education\": \"MSc Nutrition and Dietetics\", \n        \"Email\": \"august.max@gmail.com\",\n        \"Firstname\": \"August\",\n        \"HospitalCity\": \"Exton\",\n        \"HospitalName\": \"Fortis\",\n        \"HospitalPincode\": \"923421\",\n        \"HospitalStreet\": \"Willow St\",\n        \"Lastname\": \"Max\"\n    }\n\n",
+=======
+									"raw": "{\n  \"ContactNumber\": \"6234567890\",\n  \"DateOfBirth\": \"1989-02-24T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"UK_D3@gmail.com\",\n  \"Firstname\": \"CCC\",\n  \"HospitalCity\": \"Kerala\",\n  \"HospitalName\": \"Fortis\",\n  \"HospitalPincode\": \"923456\",\n  \"HospitalStreet\": \"Vasant St\",\n  \"Lastname\": \"YYY\"\n \n}\n\n\n\n",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"options": {
 										"raw": {
 											"language": "json"
@@ -542,13 +641,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/dietician/1571",
+=======
+									"raw": "{{BaseURL}}/dietician/215",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"dietician",
+<<<<<<< HEAD
 										"1571"
+=======
+										"215"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -556,6 +663,7 @@
 						},
 						{
 							"name": "Update Dietician For Invalid Dietician",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -585,13 +693,19 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI3MDE0MzgsImV4cCI6MTcyMjczMDIzOH0.EyDNs8olESNk6T9xu0XeGY8owP5aXfmbbK8EQ5BTiEKSgO907vA6cU8OPpsB0T4HI1316xhZ2uIF9omSVchlXw",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -600,7 +714,11 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\n  \"ContactNumber\": \"9234567899\",\n  \"DateOfBirth\": \"1990-11-03T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"november.john@gmail.com\",\n  \"Firstname\": \"November\",\n  \"HospitalCity\": \"chennbai\",\n  \"HospitalName\": \"St Joseph\",\n  \"HospitalPincode\": \"923433\",\n  \"HospitalStreet\": \"Valentine St\",\n  \"Lastname\": \"John\"\n \n}\n\n\n\n",
+=======
+									"raw": "{\n  \"ContactNumber\": \"6234567890\",\n  \"DateOfBirth\": \"1989-02-24T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"UK_D3@gmail.com\",\n  \"Firstname\": \"CCC\",\n  \"HospitalCity\": \"Kerala\",\n  \"HospitalName\": \"Fortis\",\n  \"HospitalPincode\": \"923456\",\n  \"HospitalStreet\": \"Vasant St\",\n  \"Lastname\": \"YYY\"\n \n}\n\n\n\n",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"options": {
 										"raw": {
 											"language": "json"
@@ -608,12 +726,17 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/dietician/3",
+=======
+									"raw": "{{BaseURL}}/dietician/215",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"dietician",
+<<<<<<< HEAD
 										"3"
 									]
 								}
@@ -681,6 +804,9 @@
 									"path": [
 										"dietician",
 										"1571"
+=======
+										"215"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -688,6 +814,7 @@
 						},
 						{
 							"name": "Retrieve All Dietician Info",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -759,19 +886,79 @@
 									}
 								}
 							],
+=======
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MTYwNDcsImV4cCI6MTcyMjg0NDg0N30.GBH9OZkkRnPSR5y8QNfVEJ823Zwt7gpie0tkmnkaoNsK5q661D30oATqIiuuFHqwWLWNiMvue4PSAFxYQFy8SQ",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
 								},
 								"method": "GET",
 								"header": [],
+<<<<<<< HEAD
+=======
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ContactNumber\": \"6234567890\",\n  \"DateOfBirth\": \"1989-02-24T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"UK_D3@gmail.com\",\n  \"Firstname\": \"CCC\",\n  \"HospitalCity\": \"Kerala\",\n  \"HospitalName\": \"Fortis\",\n  \"HospitalPincode\": \"923456\",\n  \"HospitalStreet\": \"Vasant St\",\n  \"Lastname\": \"YYY\"\n \n}\n\n\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/dietician",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"dietician"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve For Invalid Dietician",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Bearer_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"ContactNumber\": \"6234567890\",\n  \"DateOfBirth\": \"1989-02-24T18:14:08.570Z\",\n  \"Education\": \"MSc Nutrition and Dietetics\",\n  \"Email\": \"UK_D3@gmail.com\",\n  \"Firstname\": \"CCC\",\n  \"HospitalCity\": \"Kerala\",\n  \"HospitalName\": \"Fortis\",\n  \"HospitalPincode\": \"923456\",\n  \"HospitalStreet\": \"Vasant St\",\n  \"Lastname\": \"YYY\"\n \n}\n\n\n\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 								"url": {
 									"raw": "{{BaseURL}}/dietician",
 									"host": [
@@ -786,6 +973,7 @@
 						},
 						{
 							"name": "Retrieve Dietician info by ID",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -826,6 +1014,8 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -835,7 +1025,11 @@
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MTYwNDcsImV4cCI6MTcyMjg0NDg0N30.GBH9OZkkRnPSR5y8QNfVEJ823Zwt7gpie0tkmnkaoNsK5q661D30oATqIiuuFHqwWLWNiMvue4PSAFxYQFy8SQ",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -852,13 +1046,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/dietician/1571",
+=======
+									"raw": "{{BaseURL}}/dietician/212",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"dietician",
+<<<<<<< HEAD
 										"1571"
+=======
+										"212"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -866,6 +1068,7 @@
 						},
 						{
 							"name": "Retrieve Dietician info with Invalid ID",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -909,6 +1112,8 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -918,7 +1123,11 @@
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MTYwNDcsImV4cCI6MTcyMjg0NDg0N30.GBH9OZkkRnPSR5y8QNfVEJ823Zwt7gpie0tkmnkaoNsK5q661D30oATqIiuuFHqwWLWNiMvue4PSAFxYQFy8SQ",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -935,13 +1144,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/dietician/140",
+=======
+									"raw": "{{BaseURL}}/dietician/212",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"dietician",
+<<<<<<< HEAD
 										"140"
+=======
+										"212"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -955,6 +1172,7 @@
 									"script": {
 										"exec": [
 											"",
+<<<<<<< HEAD
 											"const schema = {",
 											"  \"type\": \"array\",",
 											"  \"items\": {",
@@ -1017,6 +1235,14 @@
 											"",
 											"",
 											""
+=======
+											"//const Morbidity=pm.response.json();",
+											"pm.collectionVariables.set(\"{{Morbidities}}\", pm.response.json());",
+											"",
+											"//const M1=Morbidities.map((value)=>value.morbidityId);",
+											"console.log(Morbidities);",
+											"//console.log(M1.indexOf('morbidityTestName')"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1032,7 +1258,11 @@
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzE4NDEsImV4cCI6MTcyMjg2MDY0MX0.okqRr_UXZleK6jGCynhlU76n5DIAIpveNrZbyxq8BkcIeaEwG0jqHcOT53W9_IRHO9PLt8wJREakp-Sotvki9g",
+=======
+											"value": "{{Admin_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -1062,6 +1292,7 @@
 						},
 						{
 							"name": "Retrieve Morbidity condition by Test name",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -1136,6 +1367,8 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1162,13 +1395,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/morbidity/Plasma Glucose",
+=======
+									"raw": "{{BaseURL}}/morbidity",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
+<<<<<<< HEAD
 										"morbidity",
 										"Plasma Glucose"
+=======
+										"morbidity"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -1176,6 +1417,7 @@
 						},
 						{
 							"name": "Retrieve Morbidity condition by Invalid Test name",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -1218,6 +1460,8 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1244,13 +1488,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/morbidity/DIA_AG",
+=======
+									"raw": "{{BaseURL}}/morbidity",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
+<<<<<<< HEAD
 										"morbidity",
 										"DIA_AG"
+=======
+										"morbidity"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -1264,7 +1516,11 @@
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI3NDA1MTMsImV4cCI6MTcyMjc2OTMxM30.6HVZwI90I79XKR2QP_8YK5RxxR_pSMVzkoMEEGZdTZOydE0QZlKtQom05KtXUzItqKJF0bKGEvKzcCs88Ge0dA",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -1281,13 +1537,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/dietician/1094",
+=======
+									"raw": "{{BaseURL}}/dietician",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
+<<<<<<< HEAD
 										"dietician",
 										"1094"
+=======
+										"dietician"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -1295,6 +1559,7 @@
 						},
 						{
 							"name": "Delete Invalid Dietician ID",
+<<<<<<< HEAD
 							"event": [
 								{
 									"listen": "test",
@@ -1339,13 +1604,19 @@
 									}
 								}
 							],
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
+<<<<<<< HEAD
 											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4MzE4NDEsImV4cCI6MTcyMjg2MDY0MX0.okqRr_UXZleK6jGCynhlU76n5DIAIpveNrZbyxq8BkcIeaEwG0jqHcOT53W9_IRHO9PLt8wJREakp-Sotvki9g",
+=======
+											"value": "{{Bearer_token}}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 											"type": "string"
 										}
 									]
@@ -1362,13 +1633,21 @@
 									}
 								},
 								"url": {
+<<<<<<< HEAD
 									"raw": "{{BaseURL}}/dietician/872",
+=======
+									"raw": "{{BaseURL}}/dietician",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
+<<<<<<< HEAD
 										"dietician",
 										"872"
+=======
+										"dietician"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									]
 								}
 							},
@@ -1388,7 +1667,18 @@
 							"name": "Dietician Invalid Login",
 							"request": {
 								"auth": {
+<<<<<<< HEAD
 									"type": "noauth"
+=======
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Admin_token}}",
+											"type": "string"
+										}
+									]
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 								},
 								"method": "POST",
 								"header": [],
@@ -1417,13 +1707,28 @@
 							"name": "Dietician Login",
 							"request": {
 								"auth": {
+<<<<<<< HEAD
 									"type": "noauth"
+=======
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{Admin_token}}",
+											"type": "string"
+										}
+									]
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 								},
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
+<<<<<<< HEAD
 									"raw": "{\n  \"password\": \"Crane31\",\n  \"userLoginEmail\": \"august.max@gmail.com\"\n}",
+=======
+									"raw": "{\n  \"password\": \"Prosper09\",\n  \"userLoginEmail\": \"UK_D4@gmail.com\"\n}",
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1710,10 +2015,14 @@
 							"name": "Update Patient",
 							"request": {
 								"method": "PUT",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1721,10 +2030,14 @@
 							"name": "Update Patient with Invalid Data",
 							"request": {
 								"method": "PUT",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1732,10 +2045,14 @@
 							"name": "Add New Reports for existing Patient with Vitals",
 							"request": {
 								"method": "PUT",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1743,10 +2060,14 @@
 							"name": "Add New Reports  for existing Patient without Vitals Copy",
 							"request": {
 								"method": "PUT",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1754,10 +2075,14 @@
 							"name": "Add New Reports for Invalid Patient with Vitals Copy",
 							"request": {
 								"method": "PUT",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1765,10 +2090,14 @@
 							"name": "Add New Reports  for Invalid Patient without Vitals",
 							"request": {
 								"method": "PUT",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1776,10 +2105,14 @@
 							"name": "Retrieve Patients Morbidity Details",
 							"request": {
 								"method": "GET",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -1787,10 +2120,14 @@
 							"name": "Retrieve Patients Morbidity Details with Invalid PatientID",
 							"request": {
 								"method": "GET",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -2047,10 +2384,14 @@
 							"name": "Delete Valid Patient",
 							"request": {
 								"method": "DELETE",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -2058,10 +2399,14 @@
 							"name": "Delete Invalid Patient",
 							"request": {
 								"method": "DELETE",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						}
@@ -2079,10 +2424,14 @@
 							"name": "Patient Invalid Login",
 							"request": {
 								"method": "POST",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -2129,10 +2478,14 @@
 							"name": "Patient Login",
 							"request": {
 								"method": "POST",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						}
@@ -2298,10 +2651,14 @@
 							"name": "Get Test Reports",
 							"request": {
 								"method": "GET",
+<<<<<<< HEAD
 								"header": [],
 								"url": {
 									"raw": ""
 								}
+=======
+								"header": []
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 							},
 							"response": []
 						},
@@ -2378,7 +2735,11 @@
 		},
 		{
 			"key": "Admin_token",
+<<<<<<< HEAD
 			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI4Mjg4MzgsImV4cCI6MTcyMjg1NzYzOH0.0cnZ7DrpERZd_8MQhMQo4O2CrIqtn0ng0H7HneSychpFA5TXj7NyRVRS4jVgLyLKv4nED0a9P0hxN5uC-1Q1hw"
+=======
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2MTgwNDEsImV4cCI6MTcyMjY0Njg0MX0.siaA55XY5TiqvmVC9r6RPyj2zJQwf0D5ZEpmqz6Bb8lPsqnPsZdu4MkGX7QkgLx5vXmZSF0oBsxM33xNuNGiOA"
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 		},
 		{
 			"key": "D1_token",
@@ -2409,6 +2770,7 @@
 			"key": "P1_token_229",
 			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19QNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI1Njk3NDMsImV4cCI6MTcyMjU5ODU0M30.OymTmLd4m83-XLARi3DR4-IOoDPxZU6Q5yONnd198EdJsZwywuGNkYSXjh1DVMgNrXet-iTzCDwV90nYF5HBfw",
 			"type": "string"
+<<<<<<< HEAD
 		},
 		{
 			"key": "ajv",
@@ -2419,6 +2781,8 @@
 			"key": "D5_token",
 			"value": "",
 			"type": "string"
+=======
+>>>>>>> 4717bfa2b68574d39a096289b9aad5920054ec9a
 		}
 	]
 }
