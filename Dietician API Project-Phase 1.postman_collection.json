@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f50b7e19-37dd-45b3-aaa3-563a3f9e7c54",
+		"_postman_id": "d4bb27ed-6231-42de-90a5-353476dd93bd",
 		"name": "Dietician API Project-Phase 1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "37339439",
-		"_collection_link": "https://postmanhackthon.postman.co/workspace/9e8a6e28-77fd-4891-bb90-4d10839a2e19/collection/37263204-f50b7e19-37dd-45b3-aaa3-563a3f9e7c54?action=share&source=collection_link&creator=37339439"
+		"_exporter_id": "26547761"
 	},
 	"item": [
 		{
@@ -14,29 +13,7 @@
 					"name": "Admin Login Logout",
 					"item": [
 						{
-							"name": "Admin Login",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"pm.test(\"Status code is 200\", function () {\r",
-											"    pm.response.to.have.status(200);\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Content-Type is present\", function () {\r",
-											"    pm.response.to.have.header(\"Content-Type\");\r",
-											"});\r",
-											"\r",
-											"pm.test(\"Content_Type is application/json\",function (){\r",
-											"    pm.response.to.have.header (\"Content-Type\", \"application/json\");\r",
-											"});"
-										],
-										"type": "text/javascript",
-										"packages": {}
-									}
-								}
-							],
+							"name": "Admin Invalid Login",
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -65,7 +42,7 @@
 							"response": []
 						},
 						{
-							"name": "Admin Invalid Login",
+							"name": "Admin Login",
 							"request": {
 								"auth": {
 									"type": "noauth"
@@ -74,7 +51,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n  \"password\":\"test\",\n  \"userLoginEmail\":\"Team5@gmail.com\"\n}\n\n",
+									"raw": "{\n  \"password\":\"test\",\n  \"userLoginEmail\":\"Team5@gmail.com\"\n}\n",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -145,7 +122,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{Bearer_token}}",
+											"value": "{{Admin_token}}",
 											"type": "string"
 										}
 									]
@@ -1034,7 +1011,10 @@
 							"name": "Update Patient",
 							"request": {
 								"method": "PUT",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -1042,7 +1022,10 @@
 							"name": "Update Patient with Invalid Data",
 							"request": {
 								"method": "PUT",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -1050,7 +1033,10 @@
 							"name": "Add New Reports for existing Patient with Vitals",
 							"request": {
 								"method": "PUT",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -1058,7 +1044,10 @@
 							"name": "Add New Reports  for existing Patient without Vitals Copy",
 							"request": {
 								"method": "PUT",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -1066,7 +1055,10 @@
 							"name": "Add New Reports for Invalid Patient with Vitals Copy",
 							"request": {
 								"method": "PUT",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -1074,7 +1066,10 @@
 							"name": "Add New Reports  for Invalid Patient without Vitals",
 							"request": {
 								"method": "PUT",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
@@ -1082,27 +1077,63 @@
 							"name": "Retrieve Patients Morbidity Details",
 							"request": {
 								"method": "GET",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": ""
+								}
 							},
 							"response": []
 						},
 						{
 							"name": "Retrieve Patients Morbidity Details with Invalid PatientID",
-							"request": {
-								"method": "GET",
-								"header": []
-							},
-							"response": []
-						},
-						{
-							"name": "Retrieve All Patient Info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {\r",
+											"    pm.response.to.have.status(404);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response has the required fields - errorCode and errorMessage\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData).to.be.an('object');\r",
+											"    pm.expect(responseData.errorCode).to.exist;\r",
+											"    pm.expect(responseData.errorMessage).to.exist;\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"ErrorCode should be NOT_FOUND\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.expect(responseData.errorCode).to.equal(\"NOT_FOUND\");\r",
+											"});\r",
+											"\r",
+											"pm.test(\"ErrorMessage contains Morbidity not found with MorbidityTestName\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData.errorMessage).to.contain(\"Morbidity not found with MorbidityTestName\");\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI3NDA5ODEsImV4cCI6MTcyMjc2OTc4MX0.f9Lp81r5Su0qrovZOtKbczxJZOkxY3e_pC1ItspR9lsHsHpwxvQH1RUbTCCOfAHvl4J0eKNBLktd24-OuC1wNg",
+											"value": "{{D4_token}}",
 											"type": "string"
 										}
 									]
@@ -1110,19 +1141,77 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient",
+									"raw": "{{BaseURL}}/morbidity/100000",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
-										"patient"
+										"morbidity",
+										"100000"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Retrieve for Invalid Patient info",
+							"name": "Retrieve All Patient Info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"pm.test(\"Validate the response schema for required fields\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+											"    \r",
+											"    responseData.forEach(function(patient) {\r",
+											"        pm.expect(patient).to.have.property('patientId');\r",
+											"        pm.expect(patient).to.have.property('FirstName');\r",
+											"        pm.expect(patient).to.have.property('LastName');\r",
+											"        pm.expect(patient).to.have.property('ContactNumber');\r",
+											"        pm.expect(patient).to.have.property('Email');\r",
+											"        pm.expect(patient).to.have.property('Allergy');\r",
+											"        pm.expect(patient).to.have.property('FoodPreference');\r",
+											"        pm.expect(patient).to.have.property('CuisineCategory');\r",
+											"        pm.expect(patient).to.have.property('FileMorbidity');\r",
+											"        pm.expect(patient).to.have.property('FileMorbidityCondition');\r",
+											"        pm.expect(patient).to.have.property('DateOfBirth');\r",
+											"        pm.expect(patient).to.have.property('DieticianId');\r",
+											"        pm.expect(patient).to.have.property('Vitals');\r",
+											"        pm.expect(patient).to.have.property('LastVisitDate');\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"pm.test(\"DateOfBirth is in a valid date format\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    responseData.forEach(function(patient) {\r",
+											"        pm.expect(patient.DateOfBirth).to.match(/^\\d{4}-\\d{2}-\\d{2}$/);\r",
+											"    });\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 300ms\", function () {\r",
+											"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+											"});\r",
+											"pm.test(\"Vital signs are present in the response\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    responseData.forEach(function(patient) {\r",
+											"        pm.expect(patient.Vitals).to.exist.and.to.be.an('object').and.to.not.be.empty;\r",
+											"    });\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1150,6 +1239,38 @@
 						},
 						{
 							"name": "Retrieve Patient file by File Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is within an acceptable range\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response has the required Content-Type header\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/pdf\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/pdf\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/pdf\");\r",
+											"});\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1164,7 +1285,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ac37aa3e6c022b073da33f",
+									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ac4c6f3e6c022b073da3d8",
 									"host": [
 										"{{BaseURL}}"
 									],
@@ -1172,7 +1293,7 @@
 										"patient",
 										"testReports",
 										"viewFile",
-										"66ac37aa3e6c022b073da33f"
+										"66ac4c6f3e6c022b073da3d8"
 									]
 								}
 							},
@@ -1180,6 +1301,49 @@
 						},
 						{
 							"name": "Retrieve Patient file by Invalid File Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(404);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response has the required fields - errorCode and errorMessage\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    pm.expect(responseData).to.be.an('object');\r",
+											"    pm.expect(responseData.errorCode).to.exist;\r",
+											"    pm.expect(responseData.errorMessage).to.exist;\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json');\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Validate response schema matches the expected format\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"\r",
+											"    pm.expect(responseData).to.be.an('object');\r",
+											"    pm.expect(responseData).to.have.property('errorCode');\r",
+											"    pm.expect(responseData).to.have.property('errorMessage');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1194,7 +1358,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ac37aa3e6c022b073da33f",
+									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ac37aa3e6c022b073da33f543",
 									"host": [
 										"{{BaseURL}}"
 									],
@@ -1202,7 +1366,7 @@
 										"patient",
 										"testReports",
 										"viewFile",
-										"66ac37aa3e6c022b073da33f"
+										"66ac37aa3e6c022b073da33f543"
 									]
 								}
 							},
@@ -1217,11 +1381,137 @@
 										"exec": [
 											"",
 											"//const Morbidity=pm.response.json();",
-											"pm.collectionVariables.set(\"{{Morbidities}}\", pm.response.json());",
+											"//pm.collectionVariables.set(\"{{Morbidities}}\", pm.response.json());",
 											"",
 											"//const M1=Morbidities.map((value)=>value.morbidityId);",
-											"console.log(Morbidities);",
-											"//console.log(M1.indexOf('morbidityTestName')"
+											"//console.log(Morbidities);",
+											"//console.log(M1.indexOf('morbidityTestName')",
+											"",
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is within an acceptable range\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(300);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response has the required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('array');",
+											"    responseData.forEach((item) => {",
+											"        pm.expect(item).to.include.all.keys(",
+											"            'morbidityId',",
+											"            'morbidityTestId',",
+											"            'morbidityNameRegex',",
+											"            'morbidityTestName',",
+											"            'morbidityTestUnit',",
+											"            'morbidityMarkerMinVal',",
+											"            'morbidityMarkerMaxVal'",
+											"        );",
+											"    });",
+											"});",
+											"",
+											"",
+											"pm.test(\"Morbidity marker minimum value and maximum value are non-negative integers\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    responseData.forEach(function(item) {",
+											"        pm.expect(item.morbidityMarkerMinVal).to.be.a('number').and.to.be.at.least(0);",
+											"        pm.expect(item.morbidityMarkerMaxVal).to.be.a('number').and.to.be.at.least(0);",
+											"    });",
+											"});",
+											"",
+											"",
+											"pm.test(\"Content type is application/json\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{D4_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BaseURL}}/morbidity",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"morbidity"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve Morbidity condition by Test name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"  pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Validate the schema for each object in the array\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData).to.be.an('array').that.is.not.empty;\r",
+											"\r",
+											"    responseData.forEach(function (item) {\r",
+											"        pm.expect(item).to.be.an('object');\r",
+											"        pm.expect(item).to.have.property('morbidityId').that.is.a('number');\r",
+											"        pm.expect(item).to.have.property('morbidityTestId').that.is.a('string');\r",
+											"        pm.expect(item).to.have.property('morbidityNameRegex').that.is.a('string');\r",
+											"        pm.expect(item).to.have.property('morbidityTestName').that.is.a('string');\r",
+											"        pm.expect(item).to.have.property('morbidityTestUnit').that.is.a('string');\r",
+											"        pm.expect(item).to.have.property('morbidityMarkerMinVal').that.is.a('number');\r",
+											"        pm.expect(item).to.have.property('morbidityMarkerMaxVal').that.is.a('number');\r",
+											"    });\r",
+											"});\r",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1254,51 +1544,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseURL}}/morbidity",
+									"raw": "{{BaseURL}}/morbidity/Fasting Glucose",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
-										"morbidity"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Retrieve Morbidity condition by Test name",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": [
-										{
-											"key": "token",
-											"value": "{{Admin_token}}",
-											"type": "string"
-										}
-									]
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{BaseURL}}/morbidity",
-									"host": [
-										"{{BaseURL}}"
-									],
-									"path": [
-										"morbidity"
+										"morbidity",
+										"Fasting Glucose"
 									]
 								}
 							},
@@ -1306,6 +1558,47 @@
 						},
 						{
 							"name": "Retrieve Morbidity condition by Invalid Test name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is within acceptable range\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Content-Type header is application/json\", function () {\r",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Validate the structure of the response object\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData).to.be.an('array');\r",
+											"    responseData.forEach(function(item) {\r",
+											"        pm.expect(item).to.have.property('morbidityId');\r",
+											"        pm.expect(item).to.have.property('morbidityTestId');\r",
+											"        pm.expect(item).to.have.property('morbidityNameRegex');\r",
+											"        pm.expect(item).to.have.property('morbidityTestName');\r",
+											"        pm.expect(item).to.have.property('morbidityTestUnit');\r",
+											"        pm.expect(item).to.have.property('morbidityMarkerMinVal');\r",
+											"        pm.expect(item).to.have.property('morbidityMarkerMaxVal');\r",
+											"    });\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1315,7 +1608,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "{{Admin_token}}",
+											"value": "{{D4_token}}",
 											"type": "string"
 										}
 									]
@@ -1332,12 +1625,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseURL}}/morbidity",
+									"raw": "{{BaseURL}}/morbidity/sugar",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
-										"morbidity"
+										"morbidity",
+										"sugar"
 									]
 								}
 							},
@@ -1345,17 +1639,118 @@
 						},
 						{
 							"name": "Delete Valid Patient",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 204\", function () {\r",
+											"    pm.expect(pm.response.code).to.equal(204);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 500ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Validate the response schema for successful deletion\", function () {\r",
+											"    const responseData = pm.response.json();\r",
+											"    \r",
+											"    pm.expect(responseData).to.be.an('object');\r",
+											"    pm.expect(responseData.message).to.exist.and.to.be.a('string');\r",
+											"    pm.expect(responseData.status).to.exist.and.to.be.a('number');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{D4_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/patient/143",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"patient",
+										"143"
+									]
+								}
 							},
 							"response": []
 						},
 						{
 							"name": "Delete Invalid Patient",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {\r",
+											"    pm.response.to.have.status(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response time is less than 200ms\", function () {\r",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+											"});\r",
+											"\r",
+											"\r",
+											"pm.test(\"Response body schema for DELETE request\", function () {\r",
+											"  const responseData = pm.response.json();\r",
+											"\r",
+											"  pm.expect(responseData).to.be.an('object');\r",
+											"  pm.expect(responseData.message).to.exist.and.to.be.a('string');\r",
+											"});\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{D4_token}}",
+											"type": "string"
+										}
+									]
+								},
 								"method": "DELETE",
-								"header": []
+								"header": [],
+								"url": {
+									"raw": "https://dietician-july-api-hackathon-80f2590665cc.herokuapp.com/dietician/patient/143",
+									"protocol": "https",
+									"host": [
+										"dietician-july-api-hackathon-80f2590665cc",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"dietician",
+										"patient",
+										"143"
+									]
+								}
 							},
 							"response": []
 						}
@@ -1395,7 +1790,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NDg5NDcsImV4cCI6MTcyMjY3Nzc0N30.zq8z6-BeWg1LNCdIkKpK2kvqdWRWBL-x8WuteH3txoHjGh8BUhsxS35KMH2UNosLrxp2aqJVdUDsc1x1KqOL9g",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI3MjU0ODYsImV4cCI6MTcyMjc1NDI4Nn0.fsRklpuwfQdj4H1Kiop9Y0x4pRfDIEjGkp7omTunG5LSkrVEvbeoUUNiJTM1kd8F3tNECp8Qx-VwJMR5itv4Vw",
 											"type": "string"
 										}
 									]
@@ -1444,6 +1839,9 @@
 									}
 								}
 							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1456,13 +1854,16 @@
 									]
 								},
 								"method": "GET",
-								"header": [
-									{
-										"key": "Content-Type",
-										"value": "application/json",
-										"type": "text"
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
 									}
-								],
+								},
 								"url": {
 									"raw": "{{BaseURL}}/logoutdietician",
 									"host": [
@@ -1521,7 +1922,7 @@
 									"bearer": [
 										{
 											"key": "token",
-											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2NDg5NDcsImV4cCI6MTcyMjY3Nzc0N30.zq8z6-BeWg1LNCdIkKpK2kvqdWRWBL-x8WuteH3txoHjGh8BUhsxS35KMH2UNosLrxp2aqJVdUDsc1x1KqOL9g",
+											"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI3MjU0ODYsImV4cCI6MTcyMjc1NDI4Nn0.fsRklpuwfQdj4H1Kiop9Y0x4pRfDIEjGkp7omTunG5LSkrVEvbeoUUNiJTM1kd8F3tNECp8Qx-VwJMR5itv4Vw",
 											"type": "string"
 										}
 									]
@@ -1552,10 +1953,32 @@
 					]
 				},
 				{
-					"name": "Patient Records with patient login",
+					"name": "Patient Records with patient Login",
 					"item": [
 						{
 							"name": "Retrieve All Patient Info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"error message\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Access is denied\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1583,6 +2006,32 @@
 						},
 						{
 							"name": "Retrieve Patient file by File Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is within an acceptable range\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"",
+											"",
+											"pm.test(\"Response has the required Content-Type header\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.equal(\"application/pdf\");",
+											"});",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1597,7 +2046,7 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ad8c1a4717cf471aaad1c9",
+									"raw": "{{BaseURL}}/patient/testReports/viewFile/66ac4c6f3e6c022b073da3d8",
 									"host": [
 										"{{BaseURL}}"
 									],
@@ -1605,7 +2054,7 @@
 										"patient",
 										"testReports",
 										"viewFile",
-										"66ad8c1a4717cf471aaad1c9"
+										"66ac4c6f3e6c022b073da3d8"
 									]
 								}
 							},
@@ -1619,12 +2068,29 @@
 									"script": {
 										"exec": [
 											"",
-											"//const Morbidity=pm.response.json();",
-											"pm.collectionVariables.set(\"{{Morbidities}}\", pm.response.json());",
 											"",
-											"//const M1=Morbidities.map((value)=>value.morbidityId);",
-											"console.log(Morbidities);",
-											"//console.log(M1.indexOf('morbidityTestName')"
+											"pm.test(\"Response status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"error message\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Access is denied\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"",
+											""
 										],
 										"type": "text/javascript",
 										"packages": {}
@@ -1670,6 +2136,32 @@
 						},
 						{
 							"name": "Retrieve Morbidity condition by Test name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"    pm.response.to.have.status(403);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Response time is within an acceptable range\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(150);",
+											"});",
+											"",
+											"pm.test(\"error message\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Access is denied\");",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
@@ -1696,20 +2188,119 @@
 									}
 								},
 								"url": {
-									"raw": "{{BaseURL}}/morbidity/Fasting Glucose",
+									"raw": "{{BaseURL}}/morbidity",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
-										"morbidity",
-										"Fasting Glucose"
+										"morbidity"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Retrive Test Reports with invalid id",
+							"name": "Get Test Reports with valid Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 200\", function () {",
+											"  pm.response.to.have.status(200);",
+											"});",
+											"",
+											"",
+											"pm.test(\"Content-Type header is application/json\", function () {",
+											"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"  pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"Validate the response schema for required fields\", function () {",
+											"    const responseData = pm.response.json();",
+											"    ",
+											"    pm.expect(responseData).to.be.an('array').that.is.not.empty;",
+											"    ",
+											"    responseData.forEach(function(file) {",
+											"        pm.expect(file).to.have.property('fileId');",
+											"        pm.expect(file).to.have.property('fileName');",
+											"        pm.expect(file).to.have.property('uploadDate');",
+											"        pm.expect(file).to.have.property('morbidConditionStr');",
+											"        pm.expect(file).to.have.property('vitals');",
+											"    });",
+											"});",
+											"",
+											"// pm.test(\"Vital signs are present in the response\", function () {",
+											"//     const responseData = pm.response.json();",
+											"",
+											"//     responseData.forEach(function(file) {",
+											"//         pm.expect(file.Vitals).to.exist.and.to.be.an('object').and.to.not.be.empty;",
+											"//     });",
+											"// });"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{patient_login}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BaseURL}}/patient/testReports/229",
+									"host": [
+										"{{BaseURL}}"
+									],
+									"path": [
+										"patient",
+										"testReports",
+										"229"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get Test Reports with Invalid Id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"error code\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"NOT_FOUND\");",
+											"});",
+											"",
+											"pm.test(\"error message\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Patient not found with patientId\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1738,7 +2329,29 @@
 							"response": []
 						},
 						{
-							"name": "Retrive Test Reports with valid patient id",
+							"name": "Delete Patient",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Response status code is 403\", function () {",
+											"    pm.response.to.have.status(403);",
+											"});",
+											"",
+											"pm.test(\"Response time is less than 200ms\", function () {",
+											"    pm.expect(pm.response.responseTime).to.be.below(200);",
+											"});",
+											"",
+											"pm.test(\"error message\", function () {",
+											"    pm.expect(pm.response.text()).to.include(\"Access is denied\");",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
 							"request": {
 								"auth": {
 									"type": "bearer",
@@ -1750,17 +2363,16 @@
 										}
 									]
 								},
-								"method": "GET",
+								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{BaseURL}}/patient/testReports/631",
+									"raw": "{{BaseURL}}/patient/143",
 									"host": [
 										"{{BaseURL}}"
 									],
 									"path": [
 										"patient",
-										"testReports",
-										"631"
+										"143"
 									]
 								}
 							},
@@ -1811,7 +2423,7 @@
 		},
 		{
 			"key": "Admin_token",
-			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI2MTgwNDEsImV4cCI6MTcyMjY0Njg0MX0.siaA55XY5TiqvmVC9r6RPyj2zJQwf0D5ZEpmqz6Bb8lPsqnPsZdu4MkGX7QkgLx5vXmZSF0oBsxM33xNuNGiOA"
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJUZWFtNUBnbWFpbC5jb20iLCJpYXQiOjE3MjI5NTcwNTQsImV4cCI6MTcyMjk4NTg1NH0.viSzui_YtRqNLSMNT0h0UULpRCWRNAJzQe7vmzb76PY113OcqlgN6svqOXtyE03Z_DK-YBTsWpAxlC88_ardOA"
 		},
 		{
 			"key": "D1_token",
@@ -1830,7 +2442,7 @@
 		},
 		{
 			"key": "D4_token",
-			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI1NjE1NjgsImV4cCI6MTcyMjU5MDM2OH0.Nt7H5NivAQkna4EwjiHX0IO1Z1HfXoYHJW3-gdAPZtPawT56eJPM2ieyuWe-q5hs0YHJgTYljbv6yX1dSTcuyA",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJVS19ENEBnbWFpbC5jb20iLCJpYXQiOjE3MjI5NTcxNTQsImV4cCI6MTcyMjk4NTk1NH0.dv5gaEJ2VJc_HY0911qSVdga0_z8ExTUUPmWs0LU_VftPue-JrTIf9TrQ7jtrKrlVdernHDVjFQIFG1R8JQnEg",
 			"type": "string"
 		},
 		{
@@ -1845,7 +2457,7 @@
 		},
 		{
 			"key": "patient_login",
-			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjgwMDQ4MywiZXhwIjoxNzIyODI5MjgzfQ.l8WluyaLGrA95yFbI8zirlTVc-cLaE01aBE799ju0SR4WGXXstY0qLsjEbQP6BU97raqFJHDzuZeEyPonkSXAA",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJqb25lc2VyQGdtYWlsLmNvbSIsImlhdCI6MTcyMjk1NzE4NywiZXhwIjoxNzIyOTg1OTg3fQ.DW1jdlq9wPePX_01TEbrC_RgACo3s5-bzZM848AfNRA5pdIGQBkIzgk6o6azL8ghskI2x3Ev5B9TxAR5Qb7QuQ",
 			"type": "string"
 		}
 	]
